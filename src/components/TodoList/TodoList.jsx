@@ -12,8 +12,7 @@ margin: auto;
 
 const TodoList = (props) => {
   const {
-    todos,
-    // onSelect,
+    todos,    
     onDelete,
     newTodoText,
     onKeyDownHandler,
@@ -28,7 +27,6 @@ const TodoList = (props) => {
       title={todo.title}
       content={todo.content}
       done={todo.done}
-      // onSelect={() => onSelect(todo.id)}
       onDelete={() => onDelete(todo.id)}
       onStateClicked={() => onStateClicked(todo.id)}
     />
@@ -49,7 +47,6 @@ const TodoList = (props) => {
 
 TodoList.propTypes = {
   todos: PropTypes.arrayOf(PropTypes.object).isRequired,
-  // onSelect: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
   onKeyDownHandler: PropTypes.func.isRequired,
   newTodoText: PropTypes.string.isRequired,

@@ -1,43 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import { withRouter } from 'react-router-dom';
 import * as actions from '../../store/actions/index';
 
 import TodoList from '../../components/TodoList/TodoList';
 
 
-const gridStyle = `
-display: grid;
-grid-template-columns: repeat(2,2fr)
-`;
-const flexStyle = `
-
-`;
-// const flexStyle = `
-// display: flex;
-// justify-content: center;
-// `;
-const StyledDiv = styled.div`
-${props => (props.selectedTodo ? gridStyle : flexStyle)}
-`;
-
-
 class GeneralOverview extends Component {
   state = {
     newTodoText: '',
-  }
-
-  todoSelectedHandler = (id) => {
-    const { todos } = this.props;
-    const nSelectedTodo = todos.find(todo => todo.id === id);
-    this.setState({ selectedTodo: nSelectedTodo });
-    if (id === -1) {
-      this.props.history.push(`${this.props.match.url}/`);
-    } else {
-      this.props.history.push(`${this.props.match.url}/${id}`);
-    }
   }
 
   deleteHandler = (id) => {
@@ -69,10 +41,9 @@ class GeneralOverview extends Component {
     const { todos: todoList } = this.props;
 
     return (
-      <StyledDiv selectedTodo={this.state.selectedTodo}>
+      <div>
         <TodoList
-          todos={todoList}
-          onSelect={this.todoSelectedHandler}
+          todos={todoList}          
           onDelete={this.deleteHandler}
           newTodoText={this.state.newTodoText}
           onKeyDownHandler={this.keyDownHandler}
@@ -80,19 +51,13 @@ class GeneralOverview extends Component {
           onTodoAdded={this.todoAddedHandler}
           onStateClicked={this.switchTodoStateHandler}
         />
-      </StyledDiv>
+      </div>
     );
   }
 }
 
 GeneralOverview.propTypes = {
   todos: PropTypes.arrayOf(PropTypes.object).isRequired,
-  history: PropTypes.shape({
-    push: PropTypes.func,
-  }).isRequired,
-  match: PropTypes.shape({
-    url: PropTypes.string.isRequired,
-  }).isRequired,
   onTodoRemoved: PropTypes.func.isRequired,
   onTodoAdded: PropTypes.func.isRequired,
   switchTodoState: PropTypes.func.isRequired,
