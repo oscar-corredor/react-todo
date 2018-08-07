@@ -37,20 +37,3 @@ const App = () => {
 };
 
 export default App;
-// class App extends Component {
-//   render() {
-//     const routes = (
-//       <Switch>
-//         <Route path="/todos" component={GeneralOverview} />
-//         <Redirect to="/todos" />
-//       </Switch>);
-
-//     return (
-//       <StyledDiv>
-//         {routes}
-//       </StyledDiv>
-//     );
-//   }
-// }
-
-// export default App;

@@ -12,7 +12,7 @@ margin: auto;
 
 const TodoList = (props) => {
   const {
-    todos,    
+    todos,
     onDelete,
     newTodoText,
     onKeyDownHandler,
