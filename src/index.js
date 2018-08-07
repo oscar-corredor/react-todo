@@ -1,7 +1,27 @@
+/* eslint-disable */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import { createStore, applyMiddleware, compose, combineReducers } from 'redux'
+import { Provider } from 'react-redux'
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import { BrowserRouter } from 'react-router-dom';
+
+
+import generalOverviewReducer from './store/reducers/generalOverview';
+
+import App from './App';
+
+const mainReducer = combineReducers({ generalOverview: generalOverviewReducer });
+
+const store = createStore(mainReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+
+let appElement = (
+  <BrowserRouter>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </BrowserRouter>);
+
+ReactDOM.render(appElement, document.getElementById('root'));
 registerServiceWorker();
