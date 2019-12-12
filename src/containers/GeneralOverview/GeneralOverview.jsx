@@ -43,7 +43,7 @@ class GeneralOverview extends Component {
     return (
       <div>
         <TodoList
-          todos={todoList}          
+          todos={todoList}
           onDelete={this.deleteHandler}
           newTodoText={this.state.newTodoText}
           onKeyDownHandler={this.keyDownHandler}
